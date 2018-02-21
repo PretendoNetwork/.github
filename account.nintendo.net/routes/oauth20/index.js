@@ -11,8 +11,7 @@ let routes = require('express').Router(),
  * Description: Unknown use
  */
 routes.all('/access_token/generate', async (request, response) => {
-    let POST = request.body,
-        headers = request.headers;
+    let POST = request.body;
     
     if (
         !POST ||

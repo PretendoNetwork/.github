@@ -4,15 +4,8 @@ let constants = require('./constants'),
     crypto = require('crypto');
 
 async function generatePID() {
-    let pid = '';
-
-    for (var i=0;i<10;i++) {
-        pid += constants.PID_SORT_LIST.charAt(Math.floor(Math.random() * constants.PID_SORT_LIST.length));
-    }
-
-    if (pid > 4294967295) {
-        return await generatePID();
-    }
+    // Quick, dirty fix for PIDs
+    let pid = Math.floor(Math.random() * (4294967295 - 1000000000) + 1000000000);
 
     let does_pid_inuse = await database.user_collection.findOne({
         pid: pid

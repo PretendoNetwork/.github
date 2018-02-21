@@ -58,6 +58,7 @@ typings/
 .env
 
 # custom
+config.json
 ./_proxy
 ./mii/nn
 ./mii/models

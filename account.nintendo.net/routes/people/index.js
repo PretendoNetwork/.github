@@ -25,7 +25,7 @@ routes.post('/', new RateLimit({
     // THEY THEN SEEM TO DO FURTHER CHECKS USING THE CONSOLE IDENTIFICATION WHICH I HAVE NOT FIGURED
     // OUT YET. BECAUSE OF THIS, ALL CUSTOM SERVERS WILL INHERENTLY BE LESS SECURE.
 
-    windowMs: 1*60*1000,
+    windowMs: 1*30*1000,
     max: 1,
     message: json2xml({
         errors: {
@@ -82,54 +82,6 @@ routes.post('/', new RateLimit({
         return response.send(json2xml(error));
     }
 
-    if (!headers['x-nintendo-serial-number']) {
-        
-        let error = {
-            errors: {
-                error: {
-                    code: '0002',
-                    message: 'serialNumber format is invalid'
-                }
-            }
-        }
-
-        return response.send(json2xml(error));
-    }
-
-    if (!headers['x-nintendo-region']) {
-        
-        let error = {
-            errors: {
-                error: {
-                    cause: 'X-Nintendo-Region',
-                    code: '0002',
-                    message: 'X-Nintendo-Region format is invalid'
-                }
-            }
-        }
-
-        return response.send(json2xml(error));
-    }
-
-    if (
-        !headers['x-nintendo-platform-id'] ||
-        !headers['x-nintendo-device-id'] ||
-        !headers['x-nintendo-device-cert']
-    ) {
-        
-        let error = {
-            errors: {
-                error: {
-                    cause: 'device_id',
-                    code: '0113',
-                    message: 'Unauthorized device'
-                }
-            }
-        }
-
-        return response.send(json2xml(error));
-    }
-
 
     let pid = await helpers.generatePID(),
         password = bcrypt.hashSync(helpers.generateNintendoHashedPWrd(user_data.password, pid), 10),
@@ -157,10 +109,11 @@ routes.post('/', new RateLimit({
                     ],
                     domain: 'ESHOP.NINTENDO.NET',
                     type: 'INTERNAL',
-                    id: helpers.generateRandID(9) // THIS IS A PLACE HOLDER
+                    username: helpers.generateRandID(9) // THIS IS A PLACE HOLDER
                 }  
             }
         ],
+        device_attributes: user_data.device_attributes,
         active_flag: 'Y', // No idea what this is or what it's used for, but it seems to be Boolean based
         birth_date: user_data.birth_date,
         country: user_data.country,
@@ -224,7 +177,6 @@ routes.post('/', new RateLimit({
                     certificate: headers['x-nintendo-device-cert']
                 }
             },
-            device_attributes: user_data.device_attributes,
             service_agreement: user_data.agreement,
             parental_consent: user_data.parental_consent,
         }
@@ -236,7 +188,7 @@ routes.post('/', new RateLimit({
 
     await database.user_collection.insert(document);
 
-    mailer.send(
+    /*mailer.send(
         user_data.email,
         '[Prentendo Network] Please confirm your e-mail address',
         `Hello,
@@ -248,7 +200,9 @@ routes.post('/', new RateLimit({
         If you are unable to connect to the above URL, please enter the following confirmation code on the device to which your Prentendo Network ID is linked.
         
         <<Confirmation code: ` + email_code + `>>`
-    )
+    )*/
+
+    console.log(pid)
 
     response.send(json2xml({
         person: {
@@ -343,23 +297,54 @@ routes.get('/@me/profile', async (request, response) => {
 		return response.send(json2xml(error));
     }
 
+    let accounts = [];
+    let device_attributes = [];
+
+    user.accounts.forEach(account => {
+        account = account.account
+        let attributes = [];
+
+        account.attributes.forEach(attribute => {
+            attribute = attribute.attribute;
+            attributes.push({
+                attribute: {
+                    id: attribute.id,
+                    name: attribute.name,
+                    updated_by: attribute.updated_by,
+                    value: attribute.value,
+                }
+            });
+        });
+
+        accounts.push({
+            account: {
+                attributes: attributes,
+                domain: account.domain,
+                type: account.type,
+                username: account.username
+            }
+        })
+    });
+
+    user.device_attributes.device_attribute.forEach(device_attribute => {
+        let attribute = {
+            name: device_attribute.name,
+            value: device_attribute.value,
+        };
+
+        if (device_attribute.created_date) {
+            attribute.created_date = device_attribute.created_date;
+        }
+
+        device_attributes.push({
+            device_attribute: attribute
+        });
+    });
+
     let person = {
         person: {
-            accounts: {
-                account: {
-                    attributes: {
-                        attribute: {
-                            id: user.accounts[0].account.attributes[0].attribute.id,
-                            name: user.accounts[0].account.attributes[0].attribute.name,
-                            updated_by: user.accounts[0].account.attributes[0].attribute.updated_by,
-                            value: user.accounts[0].account.attributes[0].attribute.value,
-                        }
-                    },
-                    domain: user.accounts[0].account.domain,
-                    type: user.accounts[0].account.type,
-                    username: user.accounts[0].account.id
-                }
-            },
+            accounts: accounts,
+            device_attributes: device_attributes,
             active_flag: user.active_flag,
             birth_date: user.birth_date,
             country: user.country,
@@ -427,7 +412,72 @@ routes.post('/@me/miis/@primary', async (request, response) => {
  * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices/owner
  * Description: Gets user profile, seems to be the same as https://account.nintendo.net/v1/api/people/@me/profile
  */
-routes.post('/@me/devices/owner', async (request, response) => {
+routes.get('/@me/devices/owner', async (request, response) => {
+    response.set('Content-Type', 'text/xml');
+    response.set('Server', 'Nintendo 3DS (http)');
+    response.set('X-Nintendo-Date', new Date().getTime());
+
+    let headers = request.headers;
+
+    if (
+        !headers['x-nintendo-client-id'] ||
+        !headers['x-nintendo-client-secret'] ||
+        !constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']] ||
+        headers['x-nintendo-client-secret'] !== constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']]
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'client_id',
+                    code: '0004',
+                    message: 'API application invalid or incorrect application credentials'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    
+    let errors = [];
+
+    if (!headers['x-nintendo-email']) {
+        errors.push({
+            error: {
+                cause: 'X-Nintendo-EMail',
+                code: '1105',
+                message: 'Email address, username, or password, is not valid'
+            }
+        });
+    }
+
+    if (
+        !headers['authorization'] ||
+        !headers['authorization'].startsWith('Basic ')
+    ) {
+        errors.push({
+            error: {
+                cause: 'Authorization',
+                code: '0002',
+                message: 'Authorization format is invalid'
+            }
+        });
+    }
+
+    if (errors.length > 0) {
+        return response.send(json2xml({
+            errors: errors
+        }));
+    }
+
+});
+
+/**
+ * [POST]
+ * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices
+ * Description: Gets user profile, seems to be the same as https://account.nintendo.net/v1/api/people/@me/profile
+ */
+routes.post('/@me/devices', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
@@ -439,15 +489,47 @@ routes.post('/@me/devices/owner', async (request, response) => {
 /**
  * [GET]
  * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices
- * Description: Gets user profile, seems to be the same as https://account.nintendo.net/v1/api/people/@me/profile
+ * Description: Returns only user devices
  */
-routes.post('/@me/devices', async (request, response) => {
-    response.set('Content-Type', 'text/xml');
+routes.get('/@me/devices', async (request, response) => {
+    //response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
 
     let headers = request.headers;
 
+    if (
+        !headers['authorization']
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+	
+    let user = await helpers.getUser(headers['authorization'].replace('Bearer ',''));
+
+    if (!user) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'bad token',
+                    code: '0004',
+                    message: 'Bad access token received; token: ' + headers['authorization']
+                }
+            }
+        }
+		return response.send(json2xml(error));
+    }
+
+    response.send(JSON.stringify(user));
 });
 
 

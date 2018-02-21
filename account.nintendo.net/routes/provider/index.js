@@ -36,12 +36,14 @@ let gamePort = {
 routes.get('/service_token/@me', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
-    response.set('X-Nintendo-Date', new Date().getTime());
+	response.set('X-Nintendo-Date', new Date().getTime());
+	
 	let token = {
 		service_token: {
 			token: 'pretendo_test'
 		}
 	}
+
 	return response.send(json2xml(token));
 });
 
@@ -53,10 +55,13 @@ routes.get('/service_token/@me', async (request, response) => {
 routes.get('/nex_token/@me', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
-    response.set('X-Nintendo-Date', new Date().getTime());
+	response.set('X-Nintendo-Date', new Date().getTime());
+	
 	let ip = null;
 	let port = null;
+	
 	console.log(request.headers['X-Nintendo-Title-ID']);
+	
 	switch(request.headers['X-Nintendo-Title-ID']){
 		case '000500001018DC00':
 			ip = gamePort.supermariomaker.ip;

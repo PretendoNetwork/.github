@@ -10,7 +10,7 @@ let transporter = nodemailer.createTransport({
 
 function send(email, subject = 'No email subject provided', message = 'No email body provided') {
     let options = {
-        from: 'riiunoreply@gmail.com',
+        from: 'pretendonetwork@gmail.com',
         to: email,
         subject: subject,
         html: message
