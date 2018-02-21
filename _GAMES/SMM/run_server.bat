@@ -1,0 +1,6 @@
+@echo off
+echo Launching Super Mario Maker server....
+node server.js
+echo Launching Super Mario Maker NEX server....
+node nex_server.js
+pause

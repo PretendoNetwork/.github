@@ -1,0 +1,161 @@
+body {
+  margin: 0;
+  display: flex;
+}
+.menu {
+  height: 100vh;
+  width: 300px;
+  background: orange;
+  display: flex; flex-wrap: wrap;
+  justify-content: center;
+}
+.menu button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 70px;
+  color: white;
+  font-size: 1.2em;
+  border-bottom: 5px solid rgba(255, 255, 255, 0.1);
+}
+.gamesapps {
+  margin-top: 10px;
+  width: 100%;
+  height: calc(100vh - 10px);
+  overflow-y: scroll;
+  display: flex; flex-wrap: wrap;
+  justify-content: space-around;
+}
+.gameTop {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 200px;
+}
+.game {
+  width: 45%;
+  min-width: 350px;
+  max-width: 700px;
+  font-family: Arial;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 0px;
+  transition: 0.8s;
+  margin: 5px;
+  background: ghostwhite;
+}
+.itemsHidden {
+  max-height: 0px;
+  overflow: hidden;
+  transition: 0.8s;
+  margin-left: 10px;
+  position: relative;
+}
+.itemsHidden button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: 0;
+  padding: 20px;
+  background: #191919;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: white;
+}
+.opened {
+  width: 98%;
+  max-width: 98%;
+}
+.backbutton {
+  width: 0px;
+  height: 0px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+@keyframes gameani {
+  from {
+    margin-top: 100vh;
+  }
+  to {
+    margin-top: 20px;
+  }
+}
+.opened .itemsHidden {
+  max-height: 1000px;
+}
+.game h3 {
+  color: rgba(0, 0, 0, 0.9);
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.gameMid {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pricing {
+  display: flex;
+  color: rgba(0, 0, 0, 0.8);
+  margin-right: 10px;
+}
+.price {
+  font-size: 1.4em;
+}
+.currensign {
+  margin-top: 1px;
+}
+
+.itemsHidden h3 {
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 400;
+}
+.itemsHidden p {
+  max-width: calc(100% - 200px);
+}
+
+.user {
+  margin-top: 20px;
+  width: 80%;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.userIcon {
+  height: 70px;
+  width: 70px;
+  background: url('https://img3.stockfresh.com/files/p/pedromonteiro/m/50/1667031_stock-photo-drunk-businessman-drinking-from-a-bottle-of-whisky.jpg');
+  background-size: cover;
+  background-position: center center;
+  border-radius: 50%;
+}
+.userRight {
+  color: white;
+  width: 50%;
+  font-family: Arial;
+}
+.userRight h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+.userRight h4 {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}

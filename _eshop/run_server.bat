@@ -1,0 +1,3 @@
+@echo off
+echo Launching geisha-wup.pretendo.net....
+node server.js
