@@ -12,10 +12,13 @@
 
 # What is this useful for?
 1. Preservation - The WiiU and the 3DS, just like every other consoles, have an EOL (End of Life.) There will be a point where Nintendo shuts the entirety of Nintendo Network that the WiiU and 3DS depend on for many features. One of the goals with this project is to keep Nintendo Network alive, and to prepare for the EOL.
-2. Customization - With a custom server you have full control. Nintendo currently enforces certain things which may not be desirable to all (for example, requiring console-specific information to login and use services, as official accounts are tied to consoles.) This could also become useful for tools like Cemu and Citra, which the former currently supports online play but requires dumps of console-specific files to get online (as, again, official accounts are tied to consoles.) Custom servers could remove this barrier and allow anyone to go online with Cemu (and potentially Citra, if they make it work.)
+2. Customization - With a custom server you have full control. Nintendo currently enforces certain things which may not be desirable to all (for example, requiring console-specific information to login and use services, as official accounts are tied to consoles.) This could also become useful for tools like Cemu and Citra, as the former currently supports online play but requires dumps of console-specific files to get online (as, again, official accounts are tied to consoles.) Custom servers could remove this barrier and allow anyone to go online with Cemu (and potentially Citra, if they make it work)
 
 # Cool! How far along is it?
-Not far at all. Currently only a few basic endpoints are implemented, and a few of them not to completion (see below.) There is also the issue of Nintendo using UDP/PRUDP for all online games, like MK8 or SMM, and a few system services, like the friends system. I have little experience with UDP in general let alone a custom layer on top of it.
+Not far at all. Currently only a few basic endpoints are implemented, and a few of them not to completion (see below), and no games are currently supported
+
+# Supported games:
+- None yet
 
 # Running a server
 ### Prerequisites:
@@ -97,7 +100,7 @@ Quick note, you will need Mocha installed on your WiiU. If you followed the guid
 
 <b id="f1">1</b> I do not know what other `TYPE`'s there are. I currently only know of one, `Nintendo-Network-EULA`, I still am unsure as to when I should throw error `1102` and I lack the remaining data for the rest of the EULA agreements. [↩](#a1)
 
-<b id="f3">2</b> There are MANY values that Nintendo seems to generate on their servers. I have no idea what some of these values mean and where/how they are used. Because of this I am unsure how to properly generate these values, and I am using placeholder values instead! ([see here for an example of what the return for an account is ](https://github.com/RedDuckss/csms/blob/master/OFFICIAL_SCHEMA.md#grab-profile))
+<b id="f3">2</b> There are MANY values here that Nintendo seems to generate on their servers. I have no idea what some of these values mean and where/how they are used. Because of this I am unsure how to properly generate these values, and I am using placeholder values instead! ([see here for an example of what the return for an account is ](https://github.com/RedDuckss/csms/blob/master/OFFICIAL_SCHEMA.md#grab-profile))
 
 The entire `accounts` section at the beginning is new, and not sent by the registration request. It seems to have something to do with eShop accounts, though I don't know what exactly. I went to the eShop and it never even makes a request to that endpoint so the eShop isn't using that data, yet it's the only "account" mentioned. I am also unsure as to what `active_flag` is used for. There are also several `id` fields that seem completely pointless, like the `id` field in the `email` section and how the `mii` has it's own `id`, as do each of the different `mii_image` fields. [↩](#a3)
 
