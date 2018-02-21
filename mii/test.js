@@ -10,9 +10,8 @@ console.log(decoded.face.color);
 
 // Now to rip assets and start rendering
 
-MII_DATA = 'AwAAQLh8tgPjxcLC16eU9AOzuI0n2QAAAERyAGUAbQBvAHYAZQAgAG0AZQAAAEBAIAAhAQJoRBgm\r\nNEYUgRIXaA0AACkAUkhQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPql';
+MII_DATA = 'AwAAQLh8tgPjxcLC16gxAwOzuI0n2QAAAEBwAHIAZQB0AGUAbgBkAG8AMQAAAEBAAAAhAQJoRBgm\r\nNEYUgRIXaA0AACkAUkhQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG+X';
 MiiHandler = new Mii(MII_DATA);
 decoded = MiiHandler.decode();
 
-console.log(decoded.body.shirt_color);
-console.log(decoded.face.color);
+console.log(decoded);

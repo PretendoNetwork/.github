@@ -297,6 +297,8 @@ routes.get('/@me/profile', async (request, response) => {
 		return response.send(json2xml(error));
     }
 
+    console.log(user)
+
     let accounts = [];
     let device_attributes = [];
 
@@ -329,7 +331,7 @@ routes.get('/@me/profile', async (request, response) => {
     user.device_attributes.device_attribute.forEach(device_attribute => {
         let attribute = {
             name: device_attribute.name,
-            value: device_attribute.value,
+            value: device_attribute.value
         };
 
         if (device_attribute.created_date) {
@@ -344,11 +346,11 @@ routes.get('/@me/profile', async (request, response) => {
     let person = {
         person: {
             accounts: accounts,
-            device_attributes: device_attributes,
             active_flag: user.active_flag,
             birth_date: user.birth_date,
             country: user.country,
             create_date: user.create_date,
+            device_attributes: device_attributes,
             gender: user.gender,
             language: user.language,
             updated: user.updated,
@@ -368,17 +370,19 @@ routes.get('/@me/profile', async (request, response) => {
             },
             mii: {
                 status: user.mii.status,
-                data: user.mii.data,
+                data: user.mii.data.replace('\r\n', ''),
                 id: user.mii.id,
                 mii_hash: user.mii.mii_hash,
-                mii_images: {
-                    mii_image: {
-                        cached_url: 'https://mii-secure.account.nintendo.net/1flcdk3hks29a_standard.tga',
-                        id: user.mii.mii_images[0].mii_image.id,
-                        url: 'https://mii-secure.account.nintendo.net/1flcdk3hks29a_standard.tga',
-                        type: user.mii.mii_images[0].mii_image.type
+                mii_images: [
+                    {
+                        mii_image: {
+                            cached_url: user.mii.mii_images[0].cached_url,
+                            id: user.mii.mii_images[0].id,
+                            url: user.mii.mii_images[0].url,
+                            type: user.mii.mii_images[0].type
+                        }
                     }
-                },
+                ],
                 name: user.mii.name,
                 primary: user.mii.primary
             },
