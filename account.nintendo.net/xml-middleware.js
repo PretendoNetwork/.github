@@ -7,7 +7,7 @@ function middleware() {
     return XMLMiddleware;
 
     function XMLMiddleware(request, response, next) {
-        if (request.method == 'POST') {
+        if (request.method == 'POST' || request.method == 'PUT') {
             let headers = request.headers,
                 body = '';
             

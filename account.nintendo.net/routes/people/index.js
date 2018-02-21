@@ -90,9 +90,6 @@ routes.post('/', new RateLimit({
         email_code = helpers.generateRandID(6),
         email_token = randtoken.generate(32);
 
-    console.log(helpers.generateNintendoHashedPWrd(user_data.password, pid));
-    console.log(password);
-
     let document = {
         accounts: [ // WTF even is this??
             {
@@ -202,8 +199,6 @@ routes.post('/', new RateLimit({
         <<Confirmation code: ` + email_code + `>>`
     )*/
 
-    console.log(pid)
-
     response.send(json2xml({
         person: {
             pid: pid
@@ -288,16 +283,15 @@ routes.get('/@me/profile', async (request, response) => {
         let error = {
             errors: {
                 error: {
-                    cause: 'bad token',
-                    code: '0004',
-                    message: 'Bad access token received; token: ' + headers['authorization']
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
                 }
             }
         }
-		return response.send(json2xml(error));
-    }
 
-    console.log(user)
+        return response.send(json2xml(error));
+    }
 
     let accounts = [];
     let device_attributes = [];
@@ -398,17 +392,83 @@ routes.get('/@me/profile', async (request, response) => {
 
 
 /**
- * [POST]
+ * [PUT]
  * Replacement for: https://account.nintendo.net/v1/api/people/@me/miis/@primary
  * Description: Updates user Mii
  */
-routes.post('/@me/miis/@primary', async (request, response) => {
+routes.put('/@me/miis/@primary', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
 
-    let headers = request.headers;
+    let headers = request.headers,
+        _PUT = request.body;
 
+    if (
+        !headers['x-nintendo-client-id'] ||
+        !headers['x-nintendo-client-secret'] ||
+        !constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']] ||
+        headers['x-nintendo-client-secret'] !== constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']]
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'client_id',
+                    code: '0004',
+                    message: 'API application invalid or incorrect application credentials'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    if (
+        !headers['authorization']
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+	
+    let user = await helpers.getUser(headers['authorization'].replace('Bearer ',''));
+
+    if (!user) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    user.mii.data = _PUT.data;
+    user.mii.name = _PUT.name;
+    user.mii.primary = _PUT.data;
+
+    await database.user_collection.update({
+        pid: user.pid
+    }, {
+        $set: {
+            mii: user.mii
+        }
+    });
+
+    response.status(200);
+    response.end();
 });
 
 /**
