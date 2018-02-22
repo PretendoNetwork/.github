@@ -92,7 +92,7 @@ routes.post('/validate/email', async (request, response) => {
 
 });
 
-**
+/**
  * [PUT]
  * Replacement for: https://account.nintendo.net/v1/api/support/email_confirmation/:USERPID/:CONFIRMCODE
  * Description: Confirms an email
@@ -118,7 +118,7 @@ routes.put('/email_confirmation/:pid/:code', async (request, response) => {
     }
 	
 	if(user.sensitive.email_confims.code == request.params.code){
-		database.user_collection.update(user._id, {$set:{email.address[0].validated:'Y'}});
+		database.user_collection.update(user._id, {$set:{'address[0].validated':'Y'}});
 	}else{
 		let error = {
             errors: {
