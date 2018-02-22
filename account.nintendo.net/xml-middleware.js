@@ -27,7 +27,7 @@ function middleware() {
                 try {
                     request.body = XML.parse(body);
                 } catch (error) {
-                    return next(new Error(error));
+                    return next();
                 }
 
                 next();

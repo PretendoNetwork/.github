@@ -476,7 +476,7 @@ routes.put('/@me/miis/@primary', async (request, response) => {
  * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices/owner
  * Description: Gets user profile, seems to be the same as https://account.nintendo.net/v1/api/people/@me/profile
  */
-routes.get('/@me/devices/owner', async (request, response) => {
+/*routes.get('/@me/devices/owner', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
@@ -534,21 +534,21 @@ routes.get('/@me/devices/owner', async (request, response) => {
         }));
     }
 
-});
+});*/
 
 /**
  * [POST]
  * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices
  * Description: Gets user profile, seems to be the same as https://account.nintendo.net/v1/api/people/@me/profile
  */
-routes.post('/@me/devices', async (request, response) => {
+/*routes.post('/@me/devices', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
 
     let headers = request.headers;
 
-});
+});*/
 
 /**
  * [GET]
@@ -556,11 +556,30 @@ routes.post('/@me/devices', async (request, response) => {
  * Description: Returns only user devices
  */
 routes.get('/@me/devices', async (request, response) => {
-    //response.set('Content-Type', 'text/xml');
+    response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
 
     let headers = request.headers;
+
+    if (
+        !headers['x-nintendo-client-id'] ||
+        !headers['x-nintendo-client-secret'] ||
+        !constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']] ||
+        headers['x-nintendo-client-secret'] !== constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']]
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'client_id',
+                    code: '0004',
+                    message: 'API application invalid or incorrect application credentials'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
 
     if (
         !headers['authorization']
@@ -584,16 +603,102 @@ routes.get('/@me/devices', async (request, response) => {
         let error = {
             errors: {
                 error: {
-                    cause: 'bad token',
-                    code: '0004',
-                    message: 'Bad access token received; token: ' + headers['authorization']
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
                 }
             }
         }
 		return response.send(json2xml(error));
     }
 
-    response.send(JSON.stringify(user));
+    response.send(json2xml({
+        devices: [
+            {
+                device: {
+                    device_id: headers['x-nintendo-device-id'],
+                    language: headers['accept-language'],
+                    updated: moment().format('YYYY-MM-DDTHH:MM:SS'),
+                    pid: user.pid,
+                    platform_id: headers['x-nintendo-platform-id'],
+                    region: headers['x-nintendo-region'],
+                    serial_number: headers['x-nintendo-serial-number'],
+                    status: 'ACTIVE',
+                    system_version: headers['x-nintendo-system-version'],
+                    type: 'RETAIL',
+                    updated_by: 'USER'
+                }
+            }
+        ]
+    }));
+});
+
+
+/**
+ * [PUT]
+ * Replacement for: http://account.pretendo.cc/v1/api/people/@me/devices/@current/inactivate
+ * Description: Deactivates a user from a console
+ */
+// THIS CURRENTLY DOES NOT UNLINK A USER. THIS IS BECAUSE PRETENDO ACCOUNTS ARE NOT TIED TO CONSOLES
+// WE ONLY RETURN WHAT THE CONSOLE EXPECTS TO PREVENT CRASHES
+routes.put('/@me/devices/@current/inactivate', async (request, response) => {
+    response.set('Server', 'Nintendo 3DS (http)');
+    response.set('X-Nintendo-Date', new Date().getTime());
+
+    let headers = request.headers;
+
+    if (
+        !headers['x-nintendo-client-id'] ||
+        !headers['x-nintendo-client-secret'] ||
+        !constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']] ||
+        headers['x-nintendo-client-secret'] !== constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']]
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'client_id',
+                    code: '0004',
+                    message: 'API application invalid or incorrect application credentials'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    if (
+        !headers['authorization']
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+	
+    let user = await helpers.getUser(headers['authorization'].replace('Bearer ',''));
+
+    if (!user) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
+                }
+            }
+        }
+		return response.send(json2xml(error));
+    }
+
+    response.status(200);
+    response.end();
 });
 
 
