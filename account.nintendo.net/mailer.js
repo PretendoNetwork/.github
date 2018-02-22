@@ -1,5 +1,5 @@
 let nodemailer = require('nodemailer'),
-    config = JSON.parse(require('fs').readFileSync('./config.json').toString());
+    config = require('./config.json');
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',

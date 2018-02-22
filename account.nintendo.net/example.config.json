@@ -1,0 +1,13 @@
+{
+    "email": {
+        "address": "email@address.com",
+        "password": "password"
+    },
+    "mongo": {
+        "database_name": {
+            "username": "username",
+            "password": "password",
+            "hostname": "localhost"
+        }
+    }
+}
