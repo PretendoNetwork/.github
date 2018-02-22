@@ -293,101 +293,9 @@ routes.get('/@me/profile', async (request, response) => {
         return response.send(json2xml(error));
     }
 
-    let accounts = [];
-    let device_attributes = [];
-
-    user.accounts.forEach(account => {
-        account = account.account
-        let attributes = [];
-
-        account.attributes.forEach(attribute => {
-            attribute = attribute.attribute;
-            attributes.push({
-                attribute: {
-                    id: attribute.id,
-                    name: attribute.name,
-                    updated_by: attribute.updated_by,
-                    value: attribute.value,
-                }
-            });
-        });
-
-        accounts.push({
-            account: {
-                attributes: attributes,
-                domain: account.domain,
-                type: account.type,
-                username: account.username
-            }
-        })
-    });
-
-    user.device_attributes.device_attribute.forEach(device_attribute => {
-        let attribute = {
-            name: device_attribute.name,
-            value: device_attribute.value
-        };
-
-        if (device_attribute.created_date) {
-            attribute.created_date = device_attribute.created_date;
-        }
-
-        device_attributes.push({
-            device_attribute: attribute
-        });
-    });
-
-    let person = {
-        person: {
-            accounts: accounts,
-            active_flag: user.active_flag,
-            birth_date: user.birth_date,
-            country: user.country,
-            create_date: user.create_date,
-            device_attributes: device_attributes,
-            gender: user.gender,
-            language: user.language,
-            updated: user.updated,
-            marketing_flag: user.marketing_flag,
-            off_device_flag: user.off_device_flag,
-            pid: user.pid,
-            email: {
-                address: user.email.address.address,
-                id: user.email.id,
-                parent: user.email.address.parent,
-                primary: user.email.address.primary,
-                reachable: user.email.reachable,
-                type: user.email.address.type,
-                updated_by: user.email.updated_by,
-                validated: user.email.address.validated,
-                validated_date: user.updated
-            },
-            mii: {
-                status: user.mii.status,
-                data: user.mii.data.replace('\r\n', ''),
-                id: user.mii.id,
-                mii_hash: user.mii.mii_hash,
-                mii_images: [
-                    {
-                        mii_image: {
-                            cached_url: user.mii.mii_images[0].cached_url,
-                            id: user.mii.mii_images[0].id,
-                            url: user.mii.mii_images[0].url,
-                            type: user.mii.mii_images[0].type
-                        }
-                    }
-                ],
-                name: user.mii.name,
-                primary: user.mii.primary
-            },
-            region: user.region,
-            tz_name: user.tz_name,
-            user_id: user.user_id,
-            utc_offset: user.utc_offset
-        }
-    }
+    let account = helpers.mapUser(user);
     
-    return response.send(json2xml(person));
+    return response.send(json2xml(account));
 });
 
 
@@ -476,7 +384,7 @@ routes.put('/@me/miis/@primary', async (request, response) => {
  * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices/owner
  * Description: Gets user profile, seems to be the same as https://account.nintendo.net/v1/api/people/@me/profile
  */
-/*routes.get('/@me/devices/owner', async (request, response) => {
+routes.get('/@me/devices/owner', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
@@ -534,21 +442,122 @@ routes.put('/@me/miis/@primary', async (request, response) => {
         }));
     }
 
-});*/
+    let user = await helpers.getUserBasic(headers['authorization'].replace('Basic ', ''), headers['x-nintendo-email']);
+
+    if (!user) {
+        let error = {
+            errors: {
+                error: {
+                    code: '1105',
+                    message: 'Email address, username, or password, is not valid'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    console.log(user)
+
+    let account = helpers.mapUser(user);
+    
+    return response.send(json2xml(account));
+
+});
 
 /**
  * [POST]
  * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices
  * Description: Gets user profile, seems to be the same as https://account.nintendo.net/v1/api/people/@me/profile
  */
-/*routes.post('/@me/devices', async (request, response) => {
+routes.post('/@me/devices', async (request, response) => {
     response.set('Content-Type', 'text/xml');
     response.set('Server', 'Nintendo 3DS (http)');
     response.set('X-Nintendo-Date', new Date().getTime());
 
-    let headers = request.headers;
+    let headers = request.headers,
+        _POST = request.body;
 
-});*/
+    if (
+        !headers['x-nintendo-client-id'] ||
+        !headers['x-nintendo-client-secret'] ||
+        !constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']] ||
+        headers['x-nintendo-client-secret'] !== constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']]
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'client_id',
+                    code: '0004',
+                    message: 'API application invalid or incorrect application credentials'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    
+    let errors = [];
+
+    if (!headers['x-nintendo-email']) {
+        errors.push({
+            error: {
+                cause: 'X-Nintendo-EMail',
+                code: '1105',
+                message: 'Email address, username, or password, is not valid'
+            }
+        });
+    }
+
+    if (
+        !headers['authorization'] ||
+        !headers['authorization'].startsWith('Basic ')
+    ) {
+        errors.push({
+            error: {
+                cause: 'Authorization',
+                code: '0002',
+                message: 'Authorization format is invalid'
+            }
+        });
+    }
+
+    if (errors.length > 0) {
+        return response.send(json2xml({
+            errors: errors
+        }));
+    }
+
+    let user = await helpers.getUserBasic(headers['authorization'].replace('Basic ', ''), headers['x-nintendo-email']);
+
+    if (!user) {
+        let error = {
+            errors: {
+                error: {
+                    code: '1105',
+                    message: 'Email address, username, or password, is not valid'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    user.device_attributes = _POST;
+
+    await database.user_collection.update({
+        pid: user.pid
+    }, {
+        $set: {
+            device_attributes: user.device_attributes
+        }
+    });
+
+    let account = helpers.mapUser(user);
+    
+    return response.send(json2xml(account));
+});
 
 /**
  * [GET]
@@ -636,7 +645,7 @@ routes.get('/@me/devices', async (request, response) => {
 
 /**
  * [PUT]
- * Replacement for: http://account.pretendo.cc/v1/api/people/@me/devices/@current/inactivate
+ * Replacement for: https://account.nintendo.net/v1/api/people/@me/devices/@current/inactivate
  * Description: Deactivates a user from a console
  */
 // THIS CURRENTLY DOES NOT UNLINK A USER. THIS IS BECAUSE PRETENDO ACCOUNTS ARE NOT TIED TO CONSOLES
@@ -696,6 +705,76 @@ routes.put('/@me/devices/@current/inactivate', async (request, response) => {
         }
 		return response.send(json2xml(error));
     }
+
+    response.status(200);
+    response.end();
+});
+
+/**
+ * [POST]
+ * Replacement for: https://account.nintendo.net/v1/api/people/@me/deletion
+ * Description: Deletes a NNID
+ */
+routes.post('/@me/deletion', async (request, response) => {
+    response.set('Content-Type', 'text/xml');
+    response.set('Server', 'Nintendo 3DS (http)');
+    response.set('X-Nintendo-Date', new Date().getTime());
+
+    let headers = request.headers;
+
+    if (
+        !headers['x-nintendo-client-id'] ||
+        !headers['x-nintendo-client-secret'] ||
+        !constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']] ||
+        headers['x-nintendo-client-secret'] !== constants.VALID_CLIENT_ID_SECRET_PAIRS[headers['x-nintendo-client-id']]
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'client_id',
+                    code: '0004',
+                    message: 'API application invalid or incorrect application credentials'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+
+    if (
+        !headers['authorization']
+    ) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
+                }
+            }
+        }
+
+        return response.send(json2xml(error));
+    }
+	
+    let user = await helpers.getUser(headers['authorization'].replace('Bearer ',''));
+
+    if (!user) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'access_token',
+                    code: '0002',
+                    message: 'Invalid access token'
+                }
+            }
+        }
+		return response.send(json2xml(error));
+    }
+
+    await database.user_collection.remove({
+        pid: user.pid
+    }, true);
 
     response.status(200);
     response.end();
