@@ -15,7 +15,7 @@
 2. Customization - With a custom server you have full control. Nintendo currently enforces certain things which may not be desirable to all (for example, requiring console-specific information to login and use services, as official accounts are tied to consoles.) This could also become useful for tools like Cemu and Citra, as the former currently supports online play but requires dumps of console-specific files to get online (as, again, official accounts are tied to consoles.) Custom servers could remove this barrier and allow anyone to go online with Cemu (and potentially Citra, if they make it work)
 
 # Cool! How far along is it?
-Not far at all. Currently only a few basic endpoints are implemented, and a few of them not to completion (see below), and no games are currently supported
+Not far at all. Currently only NNID accounts work, and no games are currently supported
 
 # Supported games:
 - None yet
@@ -86,13 +86,24 @@ Quick note, you will need Mocha installed on your WiiU. If you followed the guid
 7. Congratulations! You now have your own copy of ClientCertificate.cer. Now you can go through the setup of creating your own Pretendo server!
 
 # Currently implemented endpoints
+- [GET] https://account.nintendo.net/v1/api/admin/mapped_ids
+- [GET] https://account.nintendo.net/v1/api/content/time_zones/:REGION/:LANGUAGE
+- [GET] https://account.nintendo.net/v1/api/content/agreements/:TYPE/:REGION/:VERSION (partly, need help<sup id="a1">[1](#f1)</sup>)
 - [GET] https://account.nintendo.net/v1/api/devices/@current/status
-- [GET] https://account.nintendo.net/v1/api/content/agreements/TYPE/REGION/VERSION (partly, need help<sup id="a1">[1](#f1)</sup>)
-- [GET] https://account.nintendo.net/v1/api/content/time_zones/REGION/LANGUAGE
-- [GET] https://account.nintendo.net/v1/api/people/USERNAME
-- [POST] https://account.nintendo.net/v1/api/support/validate/email
+- [ALL] https://account.nintendo.net/v1/api/oauth20/access_token/generate (Both `password` and `refresh_token` grant types)
 - [POST] https://account.nintendo.net/v1/api/people (PARTLY! NEED HELP!<sup id="a3">[3](#f3)</sup>)
-- [POST] https://account.nintendo.net/v1/api/oauth20/access_token/generate (Both `password` and `refresh_token` grant types)
+- [GET] https://account.nintendo.net/v1/api/people/:USERNAME
+- [GET] https://account.nintendo.net/v1/api/people/@me/profile
+- [PUT] https://account.nintendo.net/v1/api/people/@me/miis/@primary
+- [GET] https://account.nintendo.net/v1/api/people/@me/devices/owner
+- [POST] https://account.nintendo.net/v1/api/people/@me/devices
+- [GET] https://account.nintendo.net/v1/api/people/@me/devices
+- [PUT] https://account.nintendo.net/v1/api/people/@me/devices/@current/inactivate
+- [POST] https://account.nintendo.net/v1/api/people/@me/deletion
+- [GET] https://account.nintendo.net/v1/api/provider/service_token/@me
+- [GET] https://account.nintendo.net/v1/api/provider/nex_token/@me (partly, still in testing)
+- [PUT] https://account.nintendo.net/v1/api/support/email_confirmation/:USERPID/:CONFIRMCODE
+- [POST] https://account.nintendo.net/v1/api/support/validate/email
 
 
 
