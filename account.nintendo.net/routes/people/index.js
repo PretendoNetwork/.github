@@ -4,7 +4,6 @@ let routes = require('express').Router(),
     database = require('../../db'),
     mailer = require('../../mailer'),
     RateLimit = require('express-rate-limit'),
-    randtoken = require('rand-token'),
     json2xml = require('json2xml'),
     bcrypt = require('bcryptjs'),
     moment = require('moment'),
@@ -87,8 +86,8 @@ routes.post('/', new RateLimit({
         password = bcrypt.hashSync(helpers.generateNintendoHashedPWrd(user_data.password, pid), 10),
         create_date = moment().format('YYYY-MM-DDTHH:MM:SS'),
         mii_hash = new puid(true).generate(),
-        email_code = helpers.generateRandID(6),
-        email_token = randtoken.generate(32);
+        email_code = await helpers.generateEmailCode(),
+        email_token = await helpers.generateEmailToken();
 
     let document = {
         accounts: [ // WTF even is this??
@@ -162,7 +161,7 @@ routes.post('/', new RateLimit({
                     token: ''
                 },
             },
-            email_confims: {
+            email_confirms: {
                 token: email_token,
                 code: email_code,
             },
@@ -185,19 +184,19 @@ routes.post('/', new RateLimit({
 
     await database.user_collection.insert(document);
 
-    /*mailer.send(
+    mailer.send(
         user_data.email,
         '[Prentendo Network] Please confirm your e-mail address',
         `Hello,
 
         Your Prentendo Network ID activation is almost complete.  Please click the link below to confirm your e-mail address and complete the activation process.
         
-        id.prentendo.cc/account/email-confirmation?token=` + email_token + `
+        http://account.prentendo.cc/account/email-confirmation?token=` + email_token + `
         
         If you are unable to connect to the above URL, please enter the following confirmation code on the device to which your Prentendo Network ID is linked.
         
-        <<Confirmation code: ` + email_code + `>>`
-    )*/
+        &lt;&lt;Confirmation code: ` + email_code + `&gt;&gt;`
+    )
 
     response.send(json2xml({
         person: {

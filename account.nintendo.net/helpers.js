@@ -1,7 +1,8 @@
 let constants = require('./constants'), 
     database = require('./db'),
     pythonStruct = require('python-struct'),
-    bcrypt = require('bcryptjs')
+    bcrypt = require('bcryptjs'),
+    randtoken = require('rand-token'),
     crypto = require('crypto');
 
 async function generatePID() {
@@ -27,6 +28,34 @@ function generateRandID(length = 10) {
     }
 
     return id;
+}
+
+async function generateEmailToken() {
+    let token = randtoken.generate(32);
+
+    let user = await database.user_collection.findOne({
+        'sensitive.email_confirms.token': token
+    });
+    
+    if (user) {
+        return await generateEmailToken();
+    }
+
+    return token;
+}
+
+async function generateEmailCode() {
+    let code = generateRandID(6);
+
+    let user = await database.user_collection.findOne({
+        'sensitive.email_confirms.code': code
+    });
+    
+    if (user) {
+        return await generateEmailCode();
+    }
+
+    return code;
 }
 
 function generateNintendoHashedPWrd(password, pid) {
@@ -219,5 +248,7 @@ module.exports = {
     generateRefreshToken: generateRefreshToken,
     getUser: getUser,
     getUserBasic: getUserBasic,
-    mapUser: mapUser
+    mapUser: mapUser,
+    generateEmailToken: generateEmailToken,
+    generateEmailCode: generateEmailCode,
 }

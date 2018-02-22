@@ -1,12 +1,13 @@
-let nodemailer = require('nodemailer');
+let nodemailer = require('nodemailer'),
+    config = JSON.parse(require('fs').readFileSync('./config.json').toString());
 
 let transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-           user: 'removed',
-           pass: 'removed'
-       }
-   });
+    service: 'gmail',
+    auth: {
+        user: config.email.address,
+        pass: config.email.password
+    }
+});
 
 function send(email, subject = 'No email subject provided', message = 'No email body provided') {
     let options = {
