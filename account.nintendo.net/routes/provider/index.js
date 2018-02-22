@@ -14,17 +14,13 @@ let routes = require('express').Router(),
 
 //The game ips and ports are stored here. When the game tries to access its specific server, it will be given the respecive ip and port.
 let gamePort = {
-	supermariomaker: {
-		ip: '10.0.0.57',
+	friends: {
+		ip: '10.0.0.225',
 		port: '1300'
 	},
-	mariokart8: {
-		ip: '10.0.0.57',
+	supermariomaker: {
+		ip: '10.0.0.225',
 		port: '1301'
-	},
-	supersmashbroswiiu: {
-		ip: '10.0.0.57',
-		port: '1302'
 	}
 }
 
@@ -60,24 +56,20 @@ routes.get('/nex_token/@me', async (request, response) => {
 	let ip = null;
 	let port = null;
 	
-	console.log(request.headers['X-Nintendo-Title-ID']);
+	console.log(request.query.game_server_id);
 	
-	switch(request.headers['X-Nintendo-Title-ID']){
-		case '000500001018DC00':
-			ip = gamePort.supermariomaker.ip;
-			port = gamePort.supermariomaker.port;
+	switch(request.query.game_server_id){
+		case '00003200':
+			ip = gamePort.friends.ip;
+			port = gamePort.friends.port;
 			break;
-		case 'mariomakereur':
-			ip = gamePort.supermariomaker.ip;
-			port = gamePort.supermariomaker.port;
-			break;
-		case 'mariomakerjpn':
+		case '1018DB00':
 			ip = gamePort.supermariomaker.ip;
 			port = gamePort.supermariomaker.port;
 			break;
 		default:
-			ip = '10.0.0.57';
-			port = '1300';
+			ip = null;
+			port = null;
 			break;
 	}
 	
@@ -86,8 +78,8 @@ routes.get('/nex_token/@me', async (request, response) => {
             errors: {
                 error: {
                     cause: 'No game server',
-                    code: '8068000B',
-                    message: 'Authentication::UnderMaintenance (No server found)'
+                    code: '9999',
+                    message: 'No server found'
                 }
             }
         }

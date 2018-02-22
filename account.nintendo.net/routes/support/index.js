@@ -1,6 +1,7 @@
 let routes = require('express').Router(),
     helpers = require('../../helpers'),
     constants = require('../../constants'),
+	database = require('../../db'),
     dns = require('dns'),
     json2xml = require('json2xml');
 
@@ -89,6 +90,48 @@ routes.post('/validate/email', async (request, response) => {
         response.end();
     });
 
+});
+
+/**
+ * [PUT]
+ * Replacement for: https://account.nintendo.net/v1/api/support/email_confirmation/:USERPID/:CONFIRMCODE
+ * Description: Confirms an email
+ */
+routes.put('/email_confirmation/:pid/:code', async (request, response) => {
+    response.set('Content-Type', 'text/xml');
+    response.set('Server', 'Nintendo 3DS (http)');
+    response.set('X-Nintendo-Date', new Date().getTime());
+
+    let user = await helpers.getUser(request.params.pid);
+	
+	if (!user) {
+        let error = {
+            errors: {
+                error: {
+                    cause: 'no user found',
+                    code: '9999',
+                    message: 'Bad pid received; pid: ' + request.params.pid
+                }
+            }
+        }
+		return response.send(json2xml(error));
+    }
+	
+	if(user.sensitive.email_confims.code == request.params.code){
+		database.user_collection.update(user._id, {$set:{'address[0].validated':'Y'}});
+	}else{
+		let error = {
+            errors: {
+                error: {
+                    cause: 'Bad code',
+                    code: '9999',
+                    message: 'Bad code received; code: ' + request.params.code
+                }
+            }
+        }
+		return response.send(json2xml(error));
+	}
+	
 });
 
 module.exports = routes;
