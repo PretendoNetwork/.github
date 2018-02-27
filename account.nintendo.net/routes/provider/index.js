@@ -10,7 +10,11 @@ let routes = require('express').Router(),
     moment = require('moment'),
     moment_timezone = require('moment-timezone'),
     puid = require('puid'),
-    fs = require('fs-extra');
+    fs = require('fs-extra'),
+    debug = require('../../debugger'),
+    route_debugger = new debug('Provider Route'.green);
+
+route_debugger.log('Loading \'provider\' API routes');
 
 //The game ips and ports are stored here. When the game tries to access its specific server, it will be given the respecive ip and port.
 let gamePort = {

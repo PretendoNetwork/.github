@@ -1,6 +1,9 @@
 let routes = require('express').Router(),
-    database = require('../../db');
+    database = require('../../db'),
+    debug = require('../../debugger'),
+    route_debugger = new debug('Account Route');
 
+route_debugger.success('Loading \'account\' API routes');
 /**
  * [GET]
  * Replacement for: https://id.nintendo.net/account/email-confirmation

@@ -104,6 +104,7 @@ Quick note, you will need Mocha installed on your WiiU. If you followed the guid
 - [GET] https://account.nintendo.net/v1/api/provider/nex_token/@me (partly, still in testing)
 - [PUT] https://account.nintendo.net/v1/api/support/email_confirmation/:USERPID/:CONFIRMCODE
 - [POST] https://account.nintendo.net/v1/api/support/validate/email
+- [GET] https://id.nintendo.net/account/email-confirmation
 
 
 

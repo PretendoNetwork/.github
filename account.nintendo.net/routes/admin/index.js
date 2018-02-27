@@ -1,7 +1,11 @@
 let routes = require('express').Router(),
     json2xml = require('json2xml'),
     database = require('../../db'),
-    constants = require('../../constants');
+    constants = require('../../constants'),
+    debug = require('../../debugger'),
+    route_debugger = new debug('Admin Route');
+
+route_debugger.success('Loading \'admin\' API routes');
 
 /**
  * [GET]

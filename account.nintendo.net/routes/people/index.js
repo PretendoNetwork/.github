@@ -9,7 +9,11 @@ let routes = require('express').Router(),
     moment = require('moment'),
     moment_timezone = require('moment-timezone'),
     puid = require('puid'),
-    fs = require('fs-extra');
+    fs = require('fs-extra'),
+    debug = require('../../debugger'),
+    route_debugger = new debug('People Route'.green);
+
+route_debugger.log('Loading \'people\' API routes');
 
 /**
  * [POST]

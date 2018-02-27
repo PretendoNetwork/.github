@@ -3,7 +3,11 @@ let routes = require('express').Router(),
     constants = require('../../constants'),
 	database = require('../../db'),
     dns = require('dns'),
-    json2xml = require('json2xml');
+    json2xml = require('json2xml'),
+    debug = require('../../debugger'),
+    route_debugger = new debug('Support Route'.green);
+
+route_debugger.log('Loading \'support\' API routes');
 
 /**
  * [POST]
@@ -69,8 +73,6 @@ routes.post('/validate/email', async (request, response) => {
     }
 
     let domain = email.split('@')[1];
-
-    console.log(email, domain);
 
     dns.resolveMx(domain, (error, addr) => {
         if (error) {

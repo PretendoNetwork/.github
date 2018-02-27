@@ -3,7 +3,11 @@ let routes = require('express').Router(),
     helpers = require('../../helpers'),
     constants = require('../../constants'),
     fs = require('fs-extra'),
-    json2xml = require('json2xml');
+    json2xml = require('json2xml'),
+    debug = require('../../debugger'),
+    route_debugger = new debug('Devices Route');
+
+route_debugger.success('Loading \'devices\' API routes');
 
 /**
  * [GET]

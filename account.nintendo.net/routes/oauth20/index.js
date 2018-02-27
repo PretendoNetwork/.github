@@ -3,7 +3,11 @@ let routes = require('express').Router(),
     bcrypt = require('bcryptjs'),
     database = require('../../db'),
     helpers = require('../../helpers'),
-    constants = require('../../constants');
+    constants = require('../../constants'),
+    debug = require('../../debugger'),
+    route_debugger = new debug('oAuth Route'.green);
+
+route_debugger.log('Loading \'oauth20\' API routes');
 
 /**
  * [GET]
