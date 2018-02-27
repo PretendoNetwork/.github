@@ -23,7 +23,8 @@ const ROUTES = {
     SUPPORT: require('./routes/support'),
     OAUTH20: require('./routes/oauth20'),
     PROVIDER: require('./routes/provider'),
-    ADMIN: require('./routes/admin')
+    ADMIN: require('./routes/admin'),
+    ROOT: require('./routes/root')
 }
 
 // START APPLICATION
@@ -52,6 +53,7 @@ router.use('/v1/api/support', ROUTES.SUPPORT);   // support API routes
 router.use('/v1/api/oauth20', ROUTES.OAUTH20);   // OAuth API routes
 router.use('/v1/api/provider', ROUTES.PROVIDER); // OAuth API routes
 router.use('/v1/api/admin', ROUTES.ADMIN);       // admin API routes (not sure what these do in general)
+router.use('/v1/api', ROUTES.ROOT);              // root routes
 
 
 // 404 handler
