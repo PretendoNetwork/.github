@@ -1,29 +1,10 @@
-/*
-'use strict';
-
-require('greenlock-express').create({
-    server: 'staging',
-    email: 'john.doe@example.com',
-    agreeTos: true,
-    debug: true,
-    approveDomains: [
-        'example.com',
-        'localhost',
-        'defirestudios.com'
-    ],
-    app: require('express')().use('/', function (req, res) {
-        res.end('Hello, World!');
-    })
-}).listen(80, 443);
-*/
-
 //////////////////////////////////////////////////////////////////
 ///                                                            ///
 ///                        Dependencies                        ///
 ///                                                            ///
 //////////////////////////////////////////////////////////////////
 
-let port = 80,
+let port = 8080,
     path = require('path'),
     express = require('express'),
     subdomain = require('express-subdomain'),
