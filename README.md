@@ -22,12 +22,12 @@ Not far at all. Currently only NNID (PNID (Pretendo Network ID)) accounts work, 
 # Supported games:
 - None yet
 
-# Service repositorys:
+# Service repositories:
 - account server [https://github.com/PretendoNetwork/account](https://github.com/PretendoNetwork/account)
 - Friends service (WIP) [https://github.com/PretendoNetwork/Friends](https://github.com/PretendoNetwork/Friends)
 - Super Mario Maker (WIP) [https://github.com/PretendoNetwork/SuperMarioMaker](https://github.com/PretendoNetwork/SuperMarioMaker)
 - eShop (PoC) [https://github.com/PretendoNetwork/eShop](https://github.com/PretendoNetwork/eShop)
 
-# Non-service repositorys:
+# Non-service repositories:
 - Official Discord bot [https://github.com/PretendoNetwork/Yamamura](https://github.com/PretendoNetwork/Yamamura)
 - Official proxy [https://github.com/PretendoNetwork/maryo](https://github.com/PretendoNetwork/maryo)
