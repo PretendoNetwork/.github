@@ -5,6 +5,7 @@ The following is a guide designed to help new developers get a feel for how best
 #### Table Of Contents
 
 [Code of Conduct](#code-of-conduct)
+
 [Prerequisites](#prerequisites)
   * [Different areas](#different-areas)
   * [Prerequisites for PRUDP](#prerequisites-for-prudp)
@@ -12,6 +13,7 @@ The following is a guide designed to help new developers get a feel for how best
   * [Prerequisites for Services](#prerequisites-for-services)
   * [Prerequisites for PUS](#prerequisites-for-pus)
   * [Prerequisites for Misc](#prerequisites-for-misc)
+  
 [Contributing](#contributing)
   * [Getting started](#getting-started)
   * [Contributing to PRUDP, NEX, or services](#contributing-to-prudp-nex-or-services)
