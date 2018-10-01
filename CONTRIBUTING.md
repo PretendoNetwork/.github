@@ -46,7 +46,7 @@ Services are servers which implement NEX in a functional way. These can be game 
 
 ### Prerequisites for PUS
 
-PUS stands for Pretendo Update Server and, as the name suggests, is the Pretendo implementation of NUS (Nintendo Update Server). This server handles things such as FW updates, serving titles to the eShop, ect. It utilizes SOAP rather than REST. NUS has not been properly reverse engineered, we are simply mimicing what we have seen the official servers send during network dumps.
+PUS stands for Pretendo Update Server and, as the name suggests, is the Pretendo implementation of NUS (Nintendo Update Server). This server handles things such as FW updates, serving titles to the eShop, ect. It utilizes SOAP rather than REST. NUS has not been properly reverse engineered, we are simply mimicking what we have seen the official servers send during network dumps.
 
 ### Prerequisites for Misc
 
@@ -93,7 +93,7 @@ If using a physical console, install [Fiddler Proxy](https://www.telerik.com/fid
 21. Paste the cert in `%USERPROFILE%\My Documents\Fiddler2\` and rename it to `ClientCertificate.cer`
 22. Open the `FiddlerScript` tab and find the `OnBeforeRequest` method
 23. At the end of the method, add:
-```
+```JavaScript
 // Change "account.nintendo.net" to whatever official Nintendo server you are replacing
 if (oSession.HostnameIs("account.nintendo.net"))
 {
