@@ -1,8 +1,8 @@
-<p align="center">
-    <a href="https://discord.me/pretendo" target="_blank">
-        <img src="https://discordapp.com/api/guilds/408718485913468928/widget.png?style=banner2">
-    </a>
-</p>
+![Banner](https://i.imgur.com/X94b7WK.png)
+
+[![Account](https://img.shields.io/badge/account-lightgrey.svg?style=for-the-badge)![Account Build](https://img.shields.io/travis/PretendoNetwork/account.svg?style=for-the-badge)](https://github.com/PretendoNetwork/account)
+[![Account](https://img.shields.io/badge/eShop-lightgrey.svg?style=for-the-badge)![eShop Build](https://img.shields.io/travis/PretendoNetwork/eShop.svg?style=for-the-badge)](https://github.com/PretendoNetwork/eShop)
+[![Account](https://img.shields.io/badge/PUS-lightgrey.svg?style=for-the-badge)![PUS Build](https://img.shields.io/travis/PretendoNetwork/PUS.svg?style=for-the-badge)](https://github.com/PretendoNetwork/PUS)
 
 # Pretendo
 
@@ -33,3 +33,10 @@ This project is licensed under the Mozilla Public License 2.0 License - see the 
 
 * PRUDP/NEX was originally designed and developed by [Quazal](http://www.quazal.com/index.html)
 * Huge thanks to [Kinnay](https://github.com/Kinnay) as without his reverse engineering work and documentation of PRUDP and NEX, I doubt Pretendo would be anywhere today.
+
+**Come join our discord server!**
+<p align="left">
+	<a href="https://discord.me/pretendo" target="_blank">
+		<img src="https://discordapp.com/api/guilds/408718485913468928/widget.png?style=banner2">
+	</a>
+</p>
