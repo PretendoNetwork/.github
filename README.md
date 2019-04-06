@@ -36,7 +36,7 @@ This project is licensed under the Mozilla Public License 2.0 License - see the 
 
 **Come join our discord server!**
 <p align="left">
-	<a href="https://discord.me/pretendo" target="_blank">
+	<a href="https://invite.gg/pretendo" target="_blank">
 		<img src="https://discordapp.com/api/guilds/408718485913468928/widget.png?style=banner2">
 	</a>
 </p>
