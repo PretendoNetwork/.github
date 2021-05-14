@@ -14,11 +14,11 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Goals/Roadmap
 
-Pretendo is a large project with many smaller sections, each with their own goals. To find the goals and roadmap for a specific section of the network, check it's repo.
+Pretendo is a large project with many smaller sections, each with their own goals. To find the goals and roadmap for a specific section of the network, check its repo.
 
 # Service repositories:
 - NEX framework [https://github.com/PretendoNetwork/nex-go](https://github.com/PretendoNetwork/nex-go)
-- account server [https://github.com/PretendoNetwork/account](https://github.com/PretendoNetwork/account)
+- Account server [https://github.com/PretendoNetwork/account](https://github.com/PretendoNetwork/account)
 - eShop (PoC) [https://github.com/PretendoNetwork/eShop](https://github.com/PretendoNetwork/eShop)
 
 # Non-service repositories:
