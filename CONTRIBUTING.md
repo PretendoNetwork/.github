@@ -154,7 +154,7 @@ This example snippet should give you a general idea of what to edit:
 ```
 Obviously you shouldn't change proper names or links.
 
-You can also use [this **unofficial** tool](https://localization.pretendo.tk) to test your translation file for the website.
+You can also use [this **unofficial** tool](https://pretendolocaletester.montylion.dev) to test your translation file for the website.
 
 * * *
 
