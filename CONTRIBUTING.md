@@ -22,12 +22,9 @@ The following is a guide designed to help new developers get a feel for how best
   * [Localization guidelines](#localization-guidelines)
   * [Localizing the website](#localizing-the-website)
 
-* * *
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the [Pretendo Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
-
-* * *
 
 ## Prerequisites
 
@@ -58,8 +55,6 @@ PUS stands for Pretendo Update Server and, as the name suggests, is the Pretendo
 ### Prerequisites for Misc
 
 There are several other, smaller, areas of development. These range from the account server, to the frontend website, the Discord bot, the OTP/SEEPROM/account.dat generation (for [Cemu](http://cemu.info/) users), ect. These serve various purposes and use various languages/technologies.
-
-* * *
 
 ## Contributing
 
@@ -119,8 +114,6 @@ if (oSession.HostnameIs("account.nintendo.net"))
 
 If using Cemu, follow the [Cemu online play guide](http://compat.cemu.info/wiki/Tutorial:Online_Play) to get Cemu online. Then modify the above steps to work with Cemu (untested).
 
-* * *
-
 ## Localization
 
 ### Localization guidelines
@@ -152,11 +145,9 @@ This example snippet should give you a general idea of what to edit:
   }
 }
 ```
-Obviously you shouldn't change proper names or links.
+You should keep proper names or links unchanged.
 
-You can also use [this **unofficial** tool](https://pretendolocaletester.montylion.dev) to test your translation file for the website.
-
-* * *
+You can then test your json file on the website [here](https://pretendo.network/localization)
 
 ## Attribution
 
