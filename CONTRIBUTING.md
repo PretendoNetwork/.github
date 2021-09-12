@@ -18,6 +18,10 @@ The following is a guide designed to help new developers get a feel for how best
   * [Getting started](#getting-started)
   * [Contributing to PRUDP, NEX, or services](#contributing-to-prudp-nex-or-services)
 
+[Localization](#localization)
+  * [Localization guidelines](#localization-guidelines)
+  * [Localizing the website](#localizing-the-website)
+
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the [Pretendo Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
@@ -109,6 +113,42 @@ if (oSession.HostnameIs("account.nintendo.net"))
 24. Restart Fiddler to save changes
 
 If using Cemu, follow the [Cemu online play guide](http://compat.cemu.info/wiki/Tutorial:Online_Play) to get Cemu online. Then modify the above steps to work with Cemu (untested).
+
+## Localization
+
+### Localization guidelines
+
+- Meaning is more important than a 1:1 translation! If a sentence sounds weird in your language, you are not only allowed, but advised to change that to sound better, as long as it keeps the original meaning.
+- If you aren't sure about a translation for a word or idiom, ask in the [#localization channel in the Discord server](https://discord.gg/egYeXEvzYv): someone who speaks your language might be able to help you.
+
+### Localizing the website
+
+At the time of writing the only part of the project ready to be localized is the [main website](https://www.pretendo.network).
+
+To localize the website, translate the contents of the [`US_en.json`](https://github.com/PretendoNetwork/website/blob/dev/locales/US_en.json) file from `/locales` into a file named REGION_language.json (e.g. `UK_en.json`, `IT_it.json`, `DE_de.json`, etc.).
+
+Make sure to translate the strings from the working branch ([dev](https://github.com/PretendoNetwork/website/tree/dev)) and not the release branch ([master](https://github.com/PretendoNetwork/website/tree/master)), as the ones in the master branch are likely to be outdated.
+ 
+When you're translating the json file, make sure to only edit the correct strings!
+This example snippet should give you a general idea of what to edit:
+```JSON
+{
+  "faq": {
+    "title": "Edit this text",
+    "text": "Edit this text",
+    "QAs": [
+      {
+        "question": "Edit this text",
+        "answer": "Edit this text"
+      }
+    ]
+  }
+}
+```
+
+You should keep proper names or links unchanged.
+
+You can then test your json file [here](https://pretendo.network/localization).
 
 ## Attribution
 
