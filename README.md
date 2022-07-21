@@ -1,4 +1,4 @@
-![Banner](https://i.imgur.com/X94b7WK.png)
+![Banner](https://cdn.discordapp.com/attachments/408723233030799362/999475543684685884/68747470733a2f2f692e696d6775722e636f6d2f5839346237574b2e706e67.png)
 
 [![Account](https://img.shields.io/badge/account-lightgrey.svg?style=for-the-badge)![Account Build](https://img.shields.io/travis/PretendoNetwork/account.svg?style=for-the-badge)](https://github.com/PretendoNetwork/account)
 [![Account](https://img.shields.io/badge/eShop-lightgrey.svg?style=for-the-badge)![eShop Build](https://img.shields.io/travis/PretendoNetwork/eShop.svg?style=for-the-badge)](https://github.com/PretendoNetwork/eShop)
