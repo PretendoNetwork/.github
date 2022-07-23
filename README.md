@@ -1,8 +1,4 @@
-![Banner](https://i.imgur.com/X94b7WK.png)
-
-[![Account](https://img.shields.io/badge/account-lightgrey.svg?style=for-the-badge)![Account Build](https://img.shields.io/travis/PretendoNetwork/account.svg?style=for-the-badge)](https://github.com/PretendoNetwork/account)
-[![Account](https://img.shields.io/badge/eShop-lightgrey.svg?style=for-the-badge)![eShop Build](https://img.shields.io/travis/PretendoNetwork/eShop.svg?style=for-the-badge)](https://github.com/PretendoNetwork/eShop)
-[![Account](https://img.shields.io/badge/PUS-lightgrey.svg?style=for-the-badge)![PUS Build](https://img.shields.io/travis/PretendoNetwork/PUS.svg?style=for-the-badge)](https://github.com/PretendoNetwork/PUS)
+![Banner](https://user-images.githubusercontent.com/49426949/180600012-1fa623f7-98e9-4d84-83bb-d5c99d68224d.png)
 
 # Pretendo
 
