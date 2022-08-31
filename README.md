@@ -28,7 +28,9 @@ This project is licensed under the Mozilla Public License 2.0 License - see the 
 ## Acknowledgments
 
 * PRUDP/NEX was originally designed and developed by [Quazal](http://www.quazal.com/index.html)
-* Huge thanks to [Kinnay](https://github.com/Kinnay) as without his reverse engineering work and documentation of PRUDP and NEX, I doubt Pretendo would be anywhere today.
+* Huge thanks to [Kinnay](https://github.com/Kinnay) as without his reverse engineering work and documentation of PRUDP and NEX, we doubt Pretendo would be anywhere today.
+
+Our full list of acknowledgements are visible on [our website](https://pretendo.network/#credits)
 
 **Come join our discord server!**
 <p align="left">
