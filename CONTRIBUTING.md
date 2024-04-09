@@ -31,7 +31,7 @@ Before you can contribute it is important to know what area you would like to co
 
 ### Prerequisites for PRUDP
 
-PRUDP(S) is the protocol layer ontop of all network requests made by the Nintendo WiiU/3DS family of consoles. It is a simple protocol spec sitting on top of UDP. It aims to make UDP reliable and secure, and was originally developed by [Quazal](http://www.quazal.com/index.html), with a custom version made for Nintendo.
+PRUDP(S) is the protocol layer ontop of all network requests made by the Nintendo WiiU/3DS family of consoles. It is a simple protocol spec sitting on top of UDP. It aims to make UDP reliable and secure, and was originally developed by [Quazal](https://en.wikipedia.org/wiki/List_of_Ubisoft_subsidiaries#Quazal), with a custom version made for Nintendo.
 
 For more information about PRUDP, see [this Wiki](https://github.com/Kinnay/NintendoClients/wiki/PRUDP-Protocol)
 
