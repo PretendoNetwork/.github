@@ -18,7 +18,7 @@ Pretendo is a large project with many smaller sections, each with their own goal
 - eShop (PoC) [https://github.com/PretendoNetwork/eShop](https://github.com/PretendoNetwork/eShop)
 
 # Non-service repositories:
-- Official Discord bot [https://github.com/PretendoNetwork/Yamamura](https://github.com/PretendoNetwork/Yamamura)
+- Official Discord bot [https://github.com/PretendoNetwork/Bandwidth](https://github.com/PretendoNetwork/Bandwidth)
 - Official proxy [https://github.com/PretendoNetwork/maryo](https://github.com/PretendoNetwork/maryo)
 
 ## License
@@ -27,7 +27,7 @@ This project is licensed under the Mozilla Public License 2.0 License - see the 
 
 ## Acknowledgments
 
-* PRUDP/NEX was originally designed and developed by [Quazal](http://www.quazal.com/index.html)
+* PRUDP/NEX was originally designed and developed by [Quazal](https://en.wikipedia.org/wiki/List_of_Ubisoft_subsidiaries#Quazal)
 * Huge thanks to [Kinnay](https://github.com/Kinnay) as without his reverse engineering work and documentation of PRUDP and NEX, we doubt Pretendo would be anywhere today.
 
 Our full list of acknowledgements are visible on [our website](https://pretendo.network/#credits)
