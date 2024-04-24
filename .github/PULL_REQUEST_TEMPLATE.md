@@ -16,7 +16,7 @@ Resolves #XXX
 
 -->
 
-- [ ] I have read and agreed to the [code of conduct](https://github.com/PretendoNetwork/Pretendo/blob/master/.github/CODE_OF_CONDUCT.md).
+- [ ] I have read and agreed to the [Code of Conduct](https://github.com/PretendoNetwork/Pretendo/blob/master/.github/CODE_OF_CONDUCT.md).
 - [ ] I have read and complied with the [contributing guidelines](https://github.com/PretendoNetwork/Pretendo/blob/master/.github/CONTRIBUTING.md).
 - [ ] What I'm implementing was an [approved issue](https://github.com/PretendoNetwork/Pretendo/issues?q=is%3Aopen+is%3Aissue+label%3Aapproved).
 - [ ] I have tested all of my changes.
