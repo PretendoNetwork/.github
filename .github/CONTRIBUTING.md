@@ -13,6 +13,7 @@ Thank you for showing interest in contributing to Pretendo Network! As an open s
 	- [Scale and Scope](#scale-and-scope)
 	- [Messages](#messages)
 - [Pull Requests](#pull-requests)
+- [Tests](#tests)
 
 # Prerequisites
 Before diving into the contribution process, we recommend familiarizing yourself with our project's existing repositories. By studying our existing codebases, issues, and pull requests you will get a better sense of direction of how we operate. Additionally, please review our [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a respectful and inclusive environment for all participants.
@@ -91,3 +92,6 @@ A pull request does not necessarily need to *close* an issue. A pull request may
 Like everything else, pull requests should be as detailed as possible. Your title should adequately summarize the changes being made, and the body of the pull request should fully explain your changes. We ask that, if applicable, the rationale behind your changes also be noted. For example rather than simply "Changed from `for...of` to `forEach`", if the change was made for a performance reason you should say "Changed from `for...of` to `forEach` due to `forEach` being X times faster in this case" and provide some benchmarks. Adding images, videos, etc. is also welcomed in order to illustrate changes. If the changes being made are directly tied to some form of visual (such as a change to the website, a tools GUI, etc.) then images or videos is ***REQUIRED***. If none are provided, then we may delay review until they are given. Providing visual examples of these changes allow us to quickly assess whether or not we wish to proceed with the changes being made.
 
 We ask that you have patience with us as we review your pull request. Pretendo Network only has a single full time developer, all other work is done by volunteers on their own time. Due to the sheer number of issues and pull requests, alongside our other general work and research, it may take us some time to fully review and decide on whether or not to merge your changes.
+
+# Tests
+We do not require 100% code coverage in any tests. We do not currently have strict rules regarding tests, however we may ask that tests be provided for large or complex changes.
