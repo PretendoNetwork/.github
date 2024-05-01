@@ -1,0 +1,25 @@
+name: Enhancement
+description: Request an update to an existing feature
+title: "[Enhancement]: "
+labels: ["enhancement", "awaiting-approval"]
+assignees: []
+body:
+  - type: checkboxes
+    attributes:
+      label: Checked Existing
+      description: Ensure you have checked the existing issues, both open and closed, for duplicate issues.
+      options:
+        - label: I have checked the repository for duplicate issues.
+          required: true
+  - type: textarea
+    id: enhancement
+    attributes:
+      label: What enhancement would you like to see?
+    validations:
+      required: true
+  - type: textarea
+    id: other-details
+    attributes:
+      label: Any other details to share? (OPTIONAL)
+    validations:
+      required: false
