@@ -2,6 +2,8 @@
 Thank you for showing interest in contributing to Pretendo Network! As an open source project, Pretendo Network welcomes contributions from developers outside of our core team. We are a large project, made up of over 100 different repositories spanning various languages and scopes. For the sake of consistency and maintainability, we have created these guidelines to outline project goals, standards, and best practices. This document will cover both code contributions as well as going over how to report any bugs or issues with a service or documentation. By adhering to these guidelines, contributors can ensure that their contributions align with the project's vision and meet the quality standards expected by the community.
 
 ### Contents
+- [How to contribute](#how-to-contribute)
+		- [Contents](#contents)
 - [Prerequisites](#prerequisites)
 - [Making Issues](#making-issues)
 - [Code Changes](#code-changes)
@@ -83,6 +85,8 @@ As stated in [Making Issues](#making-issues), before making a pull request there
 Before making a pull request ensure you have tested all changes and that no regressions have been introduced.
 
 Pull requests should never be made against the default (`main`/`master`) branch of a repository. The default branch contains the most recent, stable, version of the codebase. All work on the codebase should take place in other branches. Unless otherwise specified, your target branch should typically be the `dev` branch. You may target other feature branches, however, if need be. If a `dev` branch does not exist for the repository you are working on, please submit a feature request for one to be added before continuing.
+
+A pull request does not necessarily need to *close* an issue. A pull request may be made which implements only a subset of the requirements to close an issue, but does not fully complete the task itself. A pull request should never be *unfinished* code, however. All code must be tested and shippable. A pull request must at minimum bring an issue closer to closing without introducing any new regressions.
 
 Like everything else, pull requests should be as detailed as possible. Your title should adequately summarize the changes being made, and the body of the pull request should fully explain your changes. We ask that, if applicable, the rationale behind your changes also be noted. For example rather than simply "Changed from `for...of` to `forEach`", if the change was made for a performance reason you should say "Changed from `for...of` to `forEach` due to `forEach` being X times faster in this case" and provide some benchmarks. Adding images, videos, etc. is also welcomed in order to illustrate changes. If the changes being made are directly tied to some form of visual (such as a change to the website, a tools GUI, etc.) then images or videos is ***REQUIRED***. If none are provided, then we may delay review until they are given. Providing visual examples of these changes allow us to quickly assess whether or not we wish to proceed with the changes being made.
 
