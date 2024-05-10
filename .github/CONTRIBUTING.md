@@ -2,8 +2,6 @@
 Thank you for showing interest in contributing to Pretendo Network! As an open source project, Pretendo Network welcomes contributions from developers outside of our core team. We are a large project, made up of over 100 different repositories spanning various languages and scopes. For the sake of consistency and maintainability, we have created these guidelines to outline project goals, standards, and best practices. This document will cover both code contributions as well as going over how to report any bugs or issues with a service or documentation. By adhering to these guidelines, contributors can ensure that their contributions align with the project's vision and meet the quality standards expected by the community.
 
 ### Contents
-- [How to contribute](#how-to-contribute)
-		- [Contents](#contents)
 - [Prerequisites](#prerequisites)
 - [Questions and Contact](#questions-and-contact)
 - [Making Issues](#making-issues)
