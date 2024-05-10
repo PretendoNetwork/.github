@@ -71,12 +71,12 @@ Besides the changes themselves, commits are the most important part of contribut
 The scale and scope of a commit should be reasonable. Do not commit for every line when making multiple changes, for example. However you should not include many unrelated changes in a single commit. By limiting the scope of the commit we can ensure that if any regressions or new bugs are introduced we can easily revert those changes without the need for major refactors or reimplementations. Limiting the scale of commits also makes review of the changes easier and faster.
 
 ## Messages
-Commit messages should adequately explain the changes in the commit. Messages like "Updated file.md" and "spelling error" should not be used. Nonsense messages such as "oops" or "fixed" are especially not allowed. Commit messages should, at minimum, be in the format `type: message` where `type` represents the type or scope of the changes (`feat`, `chore`, `docs`, `bug-fix`, etc.) and `message` is the actual changes. Unless the word is from the codebase and starts with a capital letter (such as an exported Go struct), the `message` should be lowercase. We also recommend using both "subject" and "body" commits. This can be achieved through the git CLI by using multiple `-m`/`--message` flags. For example `git commit -m "short subject" -m "longer description of the changes"`.
+Commit messages should adequately explain the changes in the commit. Messages like "Updated file.md" and "spelling error" should not be used. Nonsense messages such as "oops" or "fixed" are especially not allowed. Commit messages should, at minimum, be in the format `type: message` where `type` represents the type or scope of the changes (`feat`, `chore`, `docs`, `fix`, etc.) and `message` is the actual changes. Unless the word is from the codebase and starts with a capital letter (such as an exported Go struct), the `message` should be lowercase. We also recommend using both "subject" and "body" commits. This can be achieved through the git CLI by using multiple `-m`/`--message` flags. For example `git commit -m "short subject" -m "longer description of the changes"`.
 
 The following are examples of good commit messages:
 
 - `chore: renamed nnid service to nnas`
-- `bug-fix: fixed hang in MutexMap.Has`
+- `fix: fixed hang in MutexMap.Has`
 
 Please refer to [Conventional Commits](https://conventionalcommits.org/) for a detailed guide on how to structure commit messages. Writing good, detailed, commit messages helps ensure that we can refer back to the git history and quickly find where specific changes occurred in the event that they need further review, reverting, etc.
 
