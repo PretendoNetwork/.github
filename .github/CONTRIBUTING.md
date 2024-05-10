@@ -5,6 +5,7 @@ Thank you for showing interest in contributing to Pretendo Network! As an open s
 - [How to contribute](#how-to-contribute)
 		- [Contents](#contents)
 - [Prerequisites](#prerequisites)
+- [Questions and Contact](#questions-and-contact)
 - [Making Issues](#making-issues)
 - [Code Changes](#code-changes)
 	- [Consistency](#consistency)
@@ -23,7 +24,18 @@ Given that our project's main goal is to emulate Nintendo Network, it is also hi
 > [!NOTE]
 > Developer documentation is highly work in progress. Do not expect to find everything there at this time. Please refer to the wiki first and foremost.
 
-Finally, we recommend joining our [Discord server](https://invite.gg/pretendo) to see any roadmap plans or ask specific questions from our developers.
+# Questions and Contact
+If you have questions about a specific topic or wish to contact the core development team, you have 3 main options:
+
+1. GitHub issues (recommended for specific questions)
+2. The forum (recommended for broader/more general questions and discussion)
+3. The Discord server (not recommended)
+
+If you have a specific question regarding a specific service, tool, etc. then it is preferred if you make an issue on the relevant repository using the `Question` issue template. An example would be asking a question regarding the implementation of a specific RMC method on a specific game server.
+
+If you have a more generalized question then it is preferred if you create a thread on the [Technical Discussion forum](https://forum.pretendo.network/c/technical-discussion/5). An example would be asking about a topic which spans multiple services, clarifying questions about infrastructure, contacting the team regarding good first steps/issues, etc. The [Technical Discussion forum](https://forum.pretendo.network/c/technical-discussion/5) is also a place for contributors, both current and potential, to have general discussions with each other regarding Pretendo Network. This is arguably the best place to contact the core development team.
+
+Finally, if none of the above are suitable you may join our [Discord server](https://invite.gg/pretendo). General support and technical help is being phased out here, however, in favor of the forum. Joining our Discord server for the purposes of technical discussions and contribution help is ***not*** recommended.
 
 # Making Issues
 Before contributing any code, you should understand how we use issues and how to make them in a way which ensures you will get the response you want.
