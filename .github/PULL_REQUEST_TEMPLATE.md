@@ -13,6 +13,9 @@ Resolves #XXX
 
 * Describe your changes in as much detail as possible. Make sure to list your changes, as well as the rationale behind them.
 * If applicable, include code snippets, images, videos, etc.
+*
+* If your changes require any database migrations, describe them in detail and leave any migration queries inside of a code
+* block within a <details> tag.
 
 -->
 
