@@ -38,7 +38,7 @@ If you have a more generalized question then it is preferred if you create a thr
 Finally, if none of the above are suitable you may join our [Discord server](https://invite.gg/pretendo). General support and technical help is being phased out here, however, in favor of the forum. Joining our Discord server for the purposes of technical discussions and contribution help is ***not*** recommended.
 
 # Finding Work
-To get an overview of our current and future plans, see our ["Plans" GitHub Project](https://github.com/orgs/PretendoNetwork/projects/34). The information here differs from that found on our website progress page. The website progress page gives a breif, general, overview of feature support in select games. The information on this GitHub project shows all of our wider plans for Pretendo Network as a whole.
+To get an overview of our current and future plans, see our ["Plans" GitHub Project](https://github.com/orgs/PretendoNetwork/projects/34). The information here differs from that found on our website progress page. The website progress page gives a brief, general, overview of feature support in select games. The information on this GitHub project shows all of our wider plans for Pretendo Network as a whole.
 
 Most tasks will be linked to an issue on the relevant repository. If there is no repository for a task which you would like to work on, feel free to reach out to ask for one to be made. If there is something you would like to work on and is not listed as an existing task, create a feature request issue on the relevant repository.
 
