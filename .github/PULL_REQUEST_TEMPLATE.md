@@ -2,6 +2,9 @@
 
 * Before making a pull request, ensure the changes are for an approved issue.
 * If your changes are not for an approved issue, your pull request can and will be rejected.
+*
+* CHECK https://github.com/PretendoNetwork/Pretendo/REPO_NAME/issues?q=is%3Aopen+is%3Aissue+label%3Aapproved
+* FOR APPROVED ISSUES!
 
 -->
 
@@ -21,5 +24,5 @@ Resolves #XXX
 
 - [ ] I have read and agreed to the [Code of Conduct](https://github.com/PretendoNetwork/Pretendo/blob/master/.github/CODE_OF_CONDUCT.md).
 - [ ] I have read and complied with the [contributing guidelines](https://github.com/PretendoNetwork/Pretendo/blob/master/.github/CONTRIBUTING.md).
-- [ ] What I'm implementing was an [approved issue](https://github.com/PretendoNetwork/Pretendo/issues?q=is%3Aopen+is%3Aissue+label%3Aapproved).
+- [ ] What I'm implementing was an [approved issue](../issues?q=is%3Aopen+is%3Aissue+label%3Aapproved).
 - [ ] I have tested all of my changes.
