@@ -3,7 +3,7 @@
 * Before making a pull request, ensure the changes are for an approved issue.
 * If your changes are not for an approved issue, your pull request can and will be rejected.
 *
-* CHECK https://github.com/PretendoNetwork/Pretendo/REPO_NAME/issues?q=is%3Aopen+is%3Aissue+label%3Aapproved
+* CHECK https://github.com/PretendoNetwork/REPO_NAME/issues?q=is%3Aopen+is%3Aissue+label%3Aapproved
 * FOR APPROVED ISSUES!
 
 -->
