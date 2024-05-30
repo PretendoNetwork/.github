@@ -14,6 +14,7 @@ Thank you for showing interest in contributing to Pretendo Network! As an open s
 	- [Messages](#messages)
 - [Pull Requests](#pull-requests)
 - [Tests](#tests)
+- [Licensing](#licensing)
 
 # Prerequisites
 Before diving into the contribution process, we recommend familiarizing yourself with our project's existing repositories. By studying our existing codebases, issues, and pull requests you will get a better sense of direction of how we operate. Additionally, please review our [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a respectful and inclusive environment for all participants.
@@ -113,3 +114,6 @@ We ask that you have patience with us as we review your pull request. Pretendo N
 
 # Tests
 We do not require 100% code coverage in any tests. We do not currently have strict rules regarding tests, however we may ask that tests be provided for large or complex changes.
+
+# Licensing
+Unless otherwise specified all code is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0), including that of outside contributions. This license allows users many freedoms to use our code in their own applications, including private and commercial use, while ensuring that all derivatives remain under this same license and keeps the source available, even when used over a network. A repositories license may not be changed by outside contributions unless permitted by the core development team, with good reason, and the consent of all relevant contributors has been given.
