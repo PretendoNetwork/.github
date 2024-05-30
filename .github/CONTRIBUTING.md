@@ -66,7 +66,8 @@ See each repository for it's style and linting rules, however some higher level 
 
 - NEX (game) servers are written in Go.
 - Game servers which require databases use Postgres.
-- All other servers (with few exceptions) are written in TypeScript with the intention of being run on Node. If a server is not written in TypeScript, it needs to be migrated to it. Runtimes besides Node are not accounted for.
+- All other servers (with few exceptions) are written in TypeScript with the intention of being run on Node. If a server is not written in TypeScript, it needs to be migrated to it. Runtimes besides Node (Bun, Deno, etc.) are not accounted for. If compatibility for another runtime can be added without introducing regressions when running under Node, and without significant refactoring, then support may be added via a pull request.
+- Package managers besides npm are not accounted for. If compatibility for another package manager can be added without introducing regressions when running under npm, and without significant refactoring, then support may be added via a pull request.
 - TypeScript servers which require databases use MongoDB.
 - APIs designed by us (not emulated APIs for game consoles) are implemented using gRPC. The protobuf files for these are found [here](https://github.com/PretendoNetwork/grpc-protobufs).
 - Given that our stacks are mostly Go and TypeScript, our tools and libraries are also written in Go and TypeScript depending on where they will be used. For desktop applications we typically prefer [Electron](https://electronjs.org/), as it allows us to reuse our existing libraries.
