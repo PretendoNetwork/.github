@@ -1,0 +1,46 @@
+name: Regression
+description: Report a feature regression
+title: "[Regression]: "
+labels: ["regression", "awaiting-approval"]
+assignees: []
+body:
+  - type: checkboxes
+    attributes:
+      label: Checked Existing
+      description: Ensure you have checked the existing issues, both open and closed, for duplicate issues.
+      options:
+        - label: I have checked the repository for duplicate issues.
+          required: true
+  - type: markdown
+    attributes:
+      value: "We're sorry to hear something broke. Please fill out this form to the best of your ability to help us get to the bottom of things."
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the regression in as much detail as possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: What was the previous functionality?
+    validations:
+      required: true
+  - type: textarea
+    id: when
+    attributes:
+      label: When did this occur?
+      description: If known, please link to the commit or pull request which introduced this regression. (OPTIONAL)
+    validations:
+      required: false
+  - type: textarea
+    id: other-info
+    attributes:
+      label: Other relevant information. (OPTIONAL)
+      description: |
+        Feel free to give us any more information that doesn't fit the above text boxes.
+
+        Tip: You can attach files by clicking this textbox and dragging in files.
+    validations:
+      required: false

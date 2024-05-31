@@ -1,0 +1,47 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug", "awaiting-approval"]
+assignees: []
+body:
+  - type: checkboxes
+    attributes:
+      label: Checked Existing
+      description: Ensure you have checked the existing issues, both open and closed, for duplicate issues.
+      options:
+        - label: I have checked the repository for duplicate issues.
+          required: true
+  - type: markdown
+    attributes:
+      value: "We're sorry to hear you had an issue. Please fill out this form to the best of your ability to help us get to the bottom of things."
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug in as much detail as possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce?
+      description: What steps have you taken to see the bug? (OPTIONAL)
+      placeholder: 1. ...
+    validations:
+      required: false
+  - type: textarea
+    id: other-info
+    attributes:
+      label: Other relevant information. (OPTIONAL)
+      description: |
+        Feel free to give us any more information that doesn't fit the above text boxes.
+
+        Tip: You can attach files by clicking this textbox and dragging in files.
+    validations:
+      required: false
