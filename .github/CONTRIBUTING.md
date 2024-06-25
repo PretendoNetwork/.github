@@ -99,7 +99,7 @@ The following are examples of good commit messages:
 Please refer to [Conventional Commits](https://conventionalcommits.org/) for a detailed guide on how to structure commit messages. Writing good, detailed, commit messages helps ensure that we can refer back to the git history and quickly find where specific changes occurred in the event that they need further review, reverting, etc.
 
 # Pull Requests
-As stated in [Making Issues](#making-issues), before making a pull request there must be an open, approved, issue for the changes being made. If you can not find an approved issue for the changes you wish to make, please make one before continuing.
+As stated in [Making Issues](#making-issues), before making a pull request there must be an open, approved, issue for the changes being made. If you can not find an approved issue for the changes you wish to make, please make one before continuing. Unless a single update closes multiple issues, each pull request should target a single issue. If you wish to work on multiple issues, please open a pull request for each. This keeps the pull request scope limited and allows for easier discussion of the individual issues and your related changes to them.
 
 Before making a pull request ensure you have tested all changes and that no regressions have been introduced.
 
