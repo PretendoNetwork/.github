@@ -6,7 +6,7 @@ Pretendo is an open source Nintendo Network replacement that aims to build custo
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for contributing to the project.
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct, and the process for contributing to the project.
 
 ## Goals/Roadmap
 
