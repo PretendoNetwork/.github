@@ -3,7 +3,7 @@ Pretendo is an open source Nintendo Network replacement that aims to build custo
 
 For more information on the project such as current goals, project status and other news, visit [our website](https://pretendo.network).
 
-As a fully open-source project, Prentendo welcomes contributions made by the community. If you are interested in contributing, please refer to the [contribution guide](../.github/CONTRIBUTING.md).
+As a fully open-source project, Pretendo welcomes contributions made by the community. If you are interested in contributing, please refer to the [contribution guide](../.github/CONTRIBUTING.md).
 
 ## Official Links
 
