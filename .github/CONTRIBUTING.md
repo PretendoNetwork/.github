@@ -17,6 +17,14 @@ Thank you for showing interest in contributing to Pretendo Network! As an open s
 - [Licensing](#licensing)
 
 # Prerequisites
+> [!CAUTION]
+> By contributing to this project, you agree to the following:  
+>
+> 1. **Developer Certificate of Origin** – All contributions must comply with the [Developer Certificate of Origin](https://developercertificate.org/).  
+> 2. **Ownership & Rights** – You may only contribute content you own. Do not submit anything that is:  
+>    - Owned by someone else (unless properly licensed for this project).  
+>    - A trade secret, under NDA, or otherwise confidential.  
+> 3. **Respect for Nintendo’s IP** – We strictly avoid infringing on Nintendo’s intellectual property. If you have had access to Nintendo’s proprietary materials (legally or otherwise), we may take steps to ensure compliance, including blocking contributions or removing existing ones.  
 Before diving into the contribution process, we recommend familiarizing yourself with our project's existing repositories. By studying our existing codebases, issues, and pull requests you will get a better sense of direction of how we operate. Additionally, please review our [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a respectful and inclusive environment for all participants.
 
 Given that our project's main goal is to emulate Nintendo Network, it is also highly recommended that you familiarize yourself with how these services operate. Information on these topics, and our libraries, can be found both on our [wiki](https://nintendo-wiki.pretendo.network/docs/) and our (in progress) [developer documentation](https://developer.pretendo.network/home).
