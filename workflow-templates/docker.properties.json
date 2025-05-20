@@ -1,7 +1,7 @@
 {
     "name": "Docker Build Workflow",
     "description": "Workflow to build an AMD64 and ARM64 Docker build on push and PR",
-    "iconName": "package",
+    "iconName": "octicon package",
     "categories": [
         "Docker"
     ],
